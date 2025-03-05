@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastgele Jeneratörler</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6f42c1, #8c7ae6);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+        #result span {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rastgele Jeneratörler</h1>
+        <p>Bugün ne yapmak istersiniz? Aşağıdaki seçeneklerden birini tıklayarak rastgele bir öneri alabilirsiniz.</p>
+        <button onclick="generateRandomName()">Rastgele İsim Oluşturucu</button>
+        <button onclick="generateBookName()">Rastgele Kitap İsmi</button>
+        <button onclick="generateGame()">Rastgele Oyun</button>
+        <button onclick="generateCharacterName()">Rastgele Karakter İsmi</button>
+        <button onclick="generateRandomMovie()">Rastgele Film İsmi</button>
+        <button onclick="generateQuote()">Rastgele Alıntı</button>
+        <button onclick="generateRandomNumber()">Rastgele Sayı</button>
+        <button onclick="generateRandomFact()">Rastgele İlginç Bilgi</button>
+
+        <div id="result">Sonuç burada görünecek</div>
+    </div>
+
+    <script>
+        // Erkek ve kadın isimleri listesi
+        const maleNames = [
+            "Ahmet", "Mehmet", "Yusuf", "Ali", "Mustafa", "Hüseyin", "Emre", "Ömer", "Mert", "Can", "Murat", "İsmail", "Burak",
+            "İbrahim", "Serkan", "Kaan", "Halil", "Hasan", "Baran", "Arda", "Selim", "Enes", "Tuncay", "Cem", "Kemal", "Gökhan",
+            "Onur", "Fikret", "Kerem", "Tayfun", "Bora", "Tayyar", "Harun", "Efe", "Alihan", "Erkan", "Ali Osman", "Reşat", "Barış",
+            "Taner", "Okan", "Metin", "Burhan", "Cengiz", "Erdem", "Volkan", "Sabri", "Şahin", "Ramazan", "Engin"
+        ];
+        const femaleNames = [
+            "Elif", "Zeynep", "Ayşe", "Fatma", "Hülya", "Emine", "Rabia", "İrem", "Hande", "Aylin", "Nazlı", "Meryem", "Esra",
+            "Büşra", "Sedef", "Ceyda", "Şeyma", "Pınar", "Sevgi", "Gül", "Neşe", "Damla", "Yasemin", "Selin", "Şule", "Aysel",
+            "Dilara", "Tuğba", "Kübra", "Melis", "Berna", "Ebru", "Asuman", "Derya", "Gamze", "Zeynep", "İrem", "Dilan", "Suna",
+            "Asya", "Fidan", "Sinem", "Gülben", "Ayşegül", "Sevil", "Mine", "Birsen", "Aysu", "Merve", "Seda"
+        ];
+
+        // Rastgele İsim Oluşturucu
+        function generateRandomName() {
+            const isMale = Math.random() > 0.5; // Erkek veya kız isimlerinden birini rastgele seçer
+            const randomName = isMale 
+                ? maleNames[Math.floor(Math.random() * maleNames.length)] 
+                : femaleNames[Math.floor(Math.random() * femaleNames.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele İsim:</span> " + randomName;
+        }
+
+        // Rastgele Kitap İsmi
+        function generateBookName() {
+            const books = [
+                "Dönüşüm", "İçimizdeki Şeytan", "1984", "Sefiller", "Bülbülü Öldürmek", "Savaş ve Barış", "Bir Gün", "Alchemist",
+                "Suç ve Ceza", "Hayvan Çiftliği", "Kafka'nın Dönüşümü", "Fahrenheit 451", "Sapiens", "Körlük", "Gülün Adı"
+            ];
+            const randomBook = books[Math.floor(Math.random() * books.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele Kitap İsmi:</span> " + randomBook;
+        }
+
+        // Rastgele Oyun
+        function generateGame() {
+            const games = [
+                "Minecraft", "Counter-Strike", "PUBG", "League of Legends", "Dota 2", "Valorant", "Among Us", "The Witcher 3",
+                "Red Dead Redemption 2", "FIFA 21", "Call of Duty", "Horizon Zero Dawn", "Fortnite", "Sekiro", "Overwatch"
+            ];
+            const randomGame = games[Math.floor(Math.random() * games.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele Oyun:</span> " + randomGame;
+        }
+
+        // Rastgele Karakter İsmi
+        function generateCharacterName() {
+            const characters = [
+                "John Wick", "Arya Stark", "Sherlock Holmes", "Harry Potter", "Frodo Baggins", "Walter White", "Daenerys Targaryen",
+                "Tony Stark", "Luke Skywalker", "Katniss Everdeen", "Batman", "Superman", "Wonder Woman", "Darth Vader", "Spider-Man"
+            ];
+            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele Karakter İsmi:</span> " + randomCharacter;
+        }
+
+        // Rastgele Film İsmi
+        function generateRandomMovie() {
+            const movies = [
+                "Esaretin Bedeli", "The Godfather", "The Dark Knight", "Inception", "Pulp Fiction", "Schindler's List", "Fight Club", 
+                "Forrest Gump", "The Matrix", "Gladiator", "A Beautiful Mind", "The Shawshank Redemption", "The Social Network", 
+                "The Departed", "Interstellar"
+            ];
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele Film İsmi:</span> " + randomMovie;
+        }
+
+        // Rastgele Alıntı
+        function generateQuote() {
+            const quotes = [
+                "Hayat, %10'unuzun başınıza gelenler, %90'ı ise onlara nasıl tepki verdiğinizdir.",
+                "Başlamak için mükemmel olmanıza gerek yok, mükemmel olmak için başlamak zorundasınız.",
+                "Hedefe ulaşmanın yolu, oraya nasıl gideceğinizi bilmekten geçer.",
+                "Büyük işler başarmak için büyük hayaller kurmalısınız.",
+                "Başarı, çoğu zaman başarısızlıkların içinden çıkar."
+            ];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele Alıntı:</span> " + randomQuote;
+        }
+
+        // Rastgele Sayı
+        function generateRandomNumber() {
+            const randomNumber = Math.floor(Math.random() * 100) + 1; // 1 ile 100 arasında
+            document.getElementById("result").innerHTML = "<span>Rastgele Sayı:</span> " + randomNumber;
+        }
+
+        // Rastgele İlginç Bilgi
+        function generateRandomFact() {
+            const facts = [
+                "Dünyadaki tüm karıncaların toplam ağırlığı, tüm insanların toplam ağırlığından daha fazladır.",
+                "Bir insanın vücudunda 206 kemik bulunur.",
+                "Dünyada her saniye 1000 ton su buharı atmosfere karışır.",
+                "Beynimiz, bilgisayarların sahip olduğu tüm verileri alıp işleyebilecek kadar güçlüdür.",
+                "Kuşlar, dünyanın en eski ve en çok türü bulunan hayvanlarındandır."
+            ];
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            document.getElementById("result").innerHTML = "<span>Rastgele İlginç Bilgi:</span> " + randomFact;
+        }
+    </script>
+
+</body>
+</html>
